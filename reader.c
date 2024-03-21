@@ -8,6 +8,39 @@
 
 #define BLOCK_DIM 1024
 #define PROGRAM "writer"
+/**
+	*\fn strcpy()
+	*\brief è una funzione in grado 
+			di copiare una stringa (per esempio contenuta
+	 		all'interno di un array di caratteri
+	
+	*\fn malloc()
+	*\brief serve dunque ad allocare un'area 
+		di memoria durante l'esecuzione 
+		del programma
+	*\fn free()
+	*\brief Quando una zona di memoria non serve più,
+	         occorre rilasciarla chiamando la funzione 
+			 free
+			 
+	*\fn open()
+	*\brief estituisce un oggetto file che può 
+			essere utilizzato per leggere,
+		    scrivere e modificare il file
+	*\fn fopen()	    
+	*\brief restituisce un puntatore a una struttura FILE 
+		che può essere utilizzata per accedere al file 
+	*\fn fwrite()
+	*\ brief permette di scrivere su un file 
+			un blocco di dati di qualsiasi tipo,
+	 		precedentemente aperto con la funzione fopen
+*/	
+
+	
+/**
+	\fn spawn
+	\brief crea un nuovo processo figlio, eseguito in background.
+*/
 
 int spawn(char program[], char* argument[])
 {
