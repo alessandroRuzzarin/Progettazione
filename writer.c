@@ -5,6 +5,18 @@
 #include <fcntl.h>
 
 #define BLOCK_DIM 1024
+/**
+!\fn main
+\brief copia dei dati del file nelòla pipe
+\var file
+\brief file contentente i dati...
+\var buffer 
+\var argc 
+\brief 
+\var n
+
+**/
+
 
 int main(int argc, char* argv[])
 {
