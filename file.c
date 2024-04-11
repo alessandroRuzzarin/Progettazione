@@ -1,8 +1,14 @@
 #include <stdio.h>
 #include <unistd.h>
-#include <sys/types.h>
 #include <sys/wait.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 
+#define BLOCK_DIM 1024
+#define PROGRAM "writer"
 #define BLOCK_DIM 1024
 
 int main(int argc, char* argv[])
@@ -10,7 +16,8 @@ int main(int argc, char* argv[])
  FILE *file;
  unsigned char buffer[BLOCK_DIM];
  int n;
- int pid, status;
+ int pid;
+ int status;
  int p[2];
 
  if (argc != 3)
@@ -61,7 +68,9 @@ int main(int argc, char* argv[])
        close(p[1]);
        return 0;
       }
-      while ((n = read(p[0], buffer, sizeof(buffer))) > 0)
+      while ((n = read(p[0], buffer, sizeof(buffer))) > 0){
+          
+      }
 		   fwrite(buffer, 1, n, file);
 	  fclose(file);
 	  close(p[0]);
