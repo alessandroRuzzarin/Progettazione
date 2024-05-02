@@ -16,6 +16,7 @@ int main(int argc, char* argv[]) {
     int pid;
     int status;
     int p[2];
+    int i=0;
 
     if (argc != 3) {
         printf("Uso: %s file-origine file-destinazione\n", argv[0]);
@@ -27,14 +28,14 @@ int main(int argc, char* argv[]) {
         return 0;
     }
 // process ID processo figlio
-    pid = fork();//comando per creare nuovo processo
+    pid = fork();//comando per clona processo padre
     if (pid < 0) {
         printf("Errore invocazione fork\n");
         close(p[0]);
         close(p[1]);
         return 0;
     }
-    
+    	
     if (pid > 0) {
         close(p[0]);
         file = fopen(argv[1], "rb");// apre in lettura file  produttore 
@@ -44,9 +45,11 @@ int main(int argc, char* argv[]) {
             wait(&status);
             return 0;
         }
+        
         while ((n = fread(buffer, 1, sizeof(buffer), file)) > 0) {
-            write(p[1], buffer, n); //scrive sul file cosumatore 
+            write(p[1], buffer, n); //scrive sul file cosumatore  
         }
+        
         fclose(file);// chiude il file 
         close(p[1]);
         wait(&status);
@@ -62,6 +65,11 @@ int main(int argc, char* argv[]) {
         while ((n = read(p[0], buffer, sizeof(buffer))) > 0) {
             fwrite(buffer, 1, n, file);
         }
+        printf(buffer);
+        for(i=0;i<5;i++){
+        	fgets(buffer,sizeof(buffer),stdin);
+        	fprintf(file,"%s",buffer);
+		}
         fclose(file);
         close(p[0]);
         return 1;
